@@ -1,0 +1,104 @@
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-md-4">
+        <h3 class="dashboard-page-title">Dashboard
+          <small>main page</small>
+        </h3>
+      </div>
+      <div class="col-md-8 text-md-right">
+        <h3 class="sparklines-title">
+          <sup>Today Logs:</sup>
+
+          {{debugCount + errorCount + infoCount}}
+
+          <span class="sparklines" data-values="670,350,135,-170,-324,-386,-468,-200,55,375,520,270,790,-670,-350,135,170,324,386,468,10,55,375,520,270,790" data-type="bar" data-line-color="#eeb269" data-neg-color="#dc5753" data-height="30" data-bar-width="2">
+          </span>
+
+        </h3>
+
+        <h3 class="sparklines-title">
+          <sup>Yesterday Logs: </sup>
+         {{yesterDay}}
+
+          <span class="sparklines" data-values="670,350,135,-170,-324,386,-468,-10,55,375,520,-270,790,670,-350,135,170,324,386,468,10,-55,-375,-520,270,790" data-type="bar" data-line-color="#4db19e" data-neg-color="#007ebd" data-height="30" data-bar-width="2">
+          </span>
+        </h3>
+
+      </div>
+
+    </div>
+    <!-- .row -->
+
+
+    <div class="row">
+      <div class="col-lg-3 col-sm-6">
+
+        <div class="teaser warning_bg_color counter-background-teaser text-center">          
+          <h3>{{infoCount}}</h3>
+          <p>Info / Day</p>
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-sm-6">
+
+        <div class="teaser danger_bg_color counter-background-teaser text-center">
+          <h3>{{debugCount}}</h3>
+          <p>Debug / Day</p>
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-sm-6">
+
+        <div class="teaser success_bg_color counter-background-teaser text-center">
+          <h3>{{errorCount}}</h3>
+          <p>Error / Day</p>
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-sm-6">
+
+        <div class="teaser info_bg_color counter-background-teaser text-center">
+          <h3>{{debugCount + errorCount + infoCount}}</h3>
+          <p>Total Logs</p>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="with_border with_padding">
+
+            <h3 class="divider_40">Bootstrap Stripped Table</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Level</th>
+                  <th>Message</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let log of logs">
+                  <td>{{log.id}}</td>
+                  <td>{{log.level}}</td>
+                  <td>{{log.log}}</td>
+                  <td>{{log.logTime}}</td>
+                </tr>                  
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
