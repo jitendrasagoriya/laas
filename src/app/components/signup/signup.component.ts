@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Application } from './../../models/application';
 import { Component, OnInit } from '@angular/core';
@@ -15,10 +16,16 @@ export class SignupComponent implements OnInit {
   submitted = false;
   public application:  Application = {} as Application;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private router: Router,
+    private formBuilder: FormBuilder,
     private authentication: AuthenticationService) { }
 
   ngOnInit() {
+
+    if (localStorage.getItem('currentUser')) {
+      this.router.navigate(['admin/home']);
+    }
+
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -50,6 +57,21 @@ export class SignupComponent implements OnInit {
         if (application.accessToken.trim().length !== 0 ) {
           this.application = application;
           this.registerForm.reset();
+
+          // store username and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(
+            {
+              appname: application.appName,
+              token: application.accessToken,
+              application:  JSON.stringify(application),
+              description: application.description,
+              onBoardTime: application.onBoardTime,
+              email: application.email,
+              access: application.access
+
+            }
+          ));
+          this.router.navigate(['admin/home']);
         }
       });
       alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));

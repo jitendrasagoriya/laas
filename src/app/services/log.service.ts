@@ -22,18 +22,24 @@ export class LogService {
 
 
   private handleError: HandleError;
+  private token: string;
 
   constructor(private http: HttpClient,
     httpErrorHandler: HttpErrorHandler,
     private configurationService: ConfigurationService,
     private exceptionService: ExceptionService) {
       this.handleError = httpErrorHandler.createHandleError('LogService');
+
+      if (localStorage.getItem('currentUser')) {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        this.token =  user.token;
+      }
     }
 
   getCount(logType: String): Observable<any> {
     const apiUrl = this.configurationService.getBaseUrl() + `level/${logType}/count`;
     httpOptions.headers =
-      httpOptions.headers.set('X-AUTH-LOG-HEADER', 'YAO7OV6S8I2D3HL7PXWB3GCAM7D95VIA1553246982106');
+      httpOptions.headers.set('X-AUTH-LOG-HEADER', this.token);
 
     return this.http.get<any >(apiUrl, httpOptions)
       .pipe(catchError(this.handleError('get count +' + logType))
@@ -44,7 +50,7 @@ export class LogService {
   getYesterDayCount(past: String): Observable<any> {
     const apiUrl = this.configurationService.getBaseUrl() + `level/total/${past}`;
     httpOptions.headers =
-    httpOptions.headers.set('X-AUTH-LOG-HEADER', 'YAO7OV6S8I2D3HL7PXWB3GCAM7D95VIA1553246982106');
+    httpOptions.headers.set('X-AUTH-LOG-HEADER', this.token);
     return this.http.get<any >(apiUrl, httpOptions)
       .pipe(catchError(this.handleError('get count +' + past))
     );
@@ -56,7 +62,7 @@ export class LogService {
     const apiUrl = this.configurationService.getBaseUrl();
 
     httpOptions.headers =
-    httpOptions.headers.set('X-AUTH-LOG-HEADER', 'YAO7OV6S8I2D3HL7PXWB3GCAM7D95VIA1553246982106');
+    httpOptions.headers.set('X-AUTH-LOG-HEADER', this.token);
     return this.http.get<Log[]>(apiUrl, httpOptions)
       .pipe(
         catchError(this.handleError('getHeroes', []))
@@ -74,7 +80,7 @@ export class LogService {
      { params: new HttpParams().set('name', term),
       headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-AUTH-LOG-HEADER': 'YAO7OV6S8I2D3HL7PXWB3GCAM7D95VIA1553246982106'
+      'X-AUTH-LOG-HEADER': this.token
       }) } : {};
 
     return this.http.get<Log[]>(apiUrl, options)

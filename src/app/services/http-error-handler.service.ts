@@ -1,3 +1,5 @@
+import { Application } from './../models/application';
+import { Exception } from './../models/exception';
 import { MessageService } from './message.service';
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -31,15 +33,24 @@ export class HttpErrorHandler {
 
     return (error: HttpErrorResponse): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      if (error.status !== 200) {
+        console.log(JSON.stringify(error));
+      const exception: Exception = {} as Exception;
 
-      const message = (error.error instanceof ErrorEvent) ?
+      const message = (error.error instanceof HttpErrorResponse) ?
         error.error.message :
        `server returned code ${error.status} with body "${error.error}"`;
 
 
       // TODO: better job of transforming error for user consumption
       this.messageService.add(`${serviceName}: ${operation} failed: ${message}`);
+        exception.code = error.status;
+        exception.message = error.error;
+        console.log('Inside error instance');
+          console.log('Inside application instance');
+          const responce = <any>result;
+          responce.exception = exception;
+      }
 
       // Let the app keep running by returning a safe result.
       return of( result );

@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/auth-guard.service';
 import { AuthenticationService } from './services/authentication.service';
 import { MessageService } from './services/message.service';
 import { HttpErrorHandler } from './services/http-error-handler.service';
@@ -17,6 +18,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ExceptionService } from './services/exception.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const appRoutes: Routes = [
@@ -28,11 +30,18 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'home',
-        component: AdminHomeComponent
+        component: AdminHomeComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuardService]
       },
         {
           path: 'viewlogs',
-          component: LogsComponent
+          component: LogsComponent,
+          canActivate: [AuthGuardService]
         }
     ]
 
@@ -52,7 +61,8 @@ const appRoutes: Routes = [
     HomeComponent,
     PageNotFoundComponent,
     LogsComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +81,7 @@ const appRoutes: Routes = [
     HttpErrorHandler,
     MessageService,
     AuthenticationService,
+    AuthGuardService,
     ],
   bootstrap: [AppComponent]
 })

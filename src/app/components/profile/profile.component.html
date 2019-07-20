@@ -1,0 +1,197 @@
+<section class="ls section_padding_top_50 section_padding_bottom_50 columns_padding_10">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>User
+          <small>profile</small>
+        </h3>
+      </div>
+    </div>
+    <!-- .row -->
+
+
+    <div class="row">
+      <div class="col-md-9">
+
+
+        <div class="row">
+          <!-- User Bio -->
+          <div class="col-xs-12 col-sm-12">
+
+            <div class="with_border with_padding">
+              <div class="media big-left-media">
+                <div class="media-left">
+                  <img src="assets/images/team/01.jpg" alt="...">
+                </div>
+                <div class="media-body">
+                  <h4>{{currentProfile.appname}}
+                    <small>{{currentProfile.access}}</small>
+                  </h4>
+                  <p>
+                      {{currentProfile.description}}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- .with_border -->
+          </div>
+          <!-- .col-* -->
+
+        </div>
+        <!-- .row -->
+
+        <div class="row">
+
+          <!-- User Info -->
+          <div class="col-xs-12 col-md-12">
+            <div class="with_border with_padding">
+              <h4>
+                Application Info
+              </h4>
+
+              <ul class="list1 no-bullets">
+                <li>
+                  <div class="media small-teaser">
+                    <div class="media-left media-middle">
+                      <div class="teaser_icon label-warning round fontsize_16">
+                        <i class="fa fa-globe"></i>
+                      </div>
+                    </div>
+                    <div class="media-body media-middle">
+                      <strong class="grey">
+                          token:
+                      </strong>
+                      {{currentProfile.token}}
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="media small-teaser">
+                    <div class="media-left media-middle">
+                      <div class="teaser_icon label-success round fontsize_16">
+                        <i class="fa fa-flag"></i>
+                      </div>
+                    </div>
+                    <div class="media-body media-middle">
+                      <strong class="grey">
+                        Email:
+                      </strong>
+                      {{currentProfile.email}}
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="media small-teaser">
+                    <div class="media-left media-middle">
+                      <div class="teaser_icon label-info round fontsize_16">
+                        <i class="fa fa-briefcase"></i>
+                      </div>
+                    </div>
+                    <div class="media-body media-middle">
+                      <strong class="grey">
+                        Registration Date:
+                      </strong>
+                      {{currentProfile.onBoardTime}}
+                    </div>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+            <!-- .with_border -->
+          </div>
+          <!-- col-* -->
+
+          <!-- User Statistics -->
+          
+          <!-- col-* -->
+        </div>
+        <!-- .row -->
+
+
+        
+        <!-- .row -->
+      </div>
+      <!-- .col-* left column -->
+
+      <div class="col-xs-12 col-md-3">
+
+        <div class="row">
+           
+          <!-- .col-* -->
+          <div class="col-sm-12">
+            <div class="with_border with_padding">
+
+              <form method="post" action="./">
+                <div class="wrap-forms">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <h4>Send Message</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group has-placeholder">
+                        <label for="form-id-1">Name
+                          <sup>*</sup>
+                        </label>
+                        <input class="form-control" type="text" name="name" placeholder="Name" value="" id="form-id-1" required="required">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group has-placeholder">
+                        <label for="form-id-2">Phone
+                          <sup>*</sup>
+                        </label>
+                        <input class="form-control" type="text" name="phone" placeholder="Phone" value="" id="form-id-2" required="required">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group has-placeholder">
+                        <label for="form-id-3">Email
+                          <sup>*</sup>
+                        </label>
+                        <input class="form-control" type="text" name="email" placeholder="Email Address" value="" id="form-id-3" required="required">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="form-group has-placeholder">
+                        <label for="form-id-4">Message
+                          <sup>*</sup>
+                        </label>
+                        <textarea class="form-control" name="message" placeholder="Message" id="form-id-4" required="required"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row"></div>
+                </div>
+                <div class="wrap-forms">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <input class="theme_button wide_button color1" type="submit" value="Send Message">
+                      <input class="theme_button wide_button" type="reset" value="Clear">
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+            <!-- .with_padding -->
+          </div>
+          <!-- .col -->
+        </div>
+        <!-- .row -->
+      </div>
+      <!-- .col-* right column -->
+    </div>
+    <!-- .row main columns -->
+  </div>
+  <!-- .container -->
+</section>

@@ -1,4 +1,5 @@
-export interface Application {
+import { Exception } from './exception';
+export class Application {
     id: string;
     appName: string;
     accessToken: string;
@@ -7,4 +8,5 @@ export interface Application {
     onBoardTime: string;
     email: string;
     password: string;
+    exception: Exception;
 }

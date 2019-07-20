@@ -41,8 +41,11 @@ export class AuthenticationService {
   /** GET: get application to the database */
   getApplication (email: string, password: string): Observable<Application> {
     // tslint:disable-next-line:prefer-const
-    const options = { params: new HttpParams().set('name', email.trim()).set('password', password.trim()) };
-    return this.http.post<Application>(this.configurationService.baseAuthenticationDevUrl, httpOptions)
+    const options = { params: new HttpParams().set('email', email.trim()).set('password', password.trim()),
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    }) };
+    return this.http.get<Application>(this.configurationService.baseAuthenticationDevUrl, options)
       .pipe(
         catchError(this.handleError('addApplication', this.application))
       );

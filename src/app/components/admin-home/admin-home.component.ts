@@ -1,6 +1,8 @@
 import { Log } from './../../models/log';
 import { LogService } from './../../services/log.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-admin-home',
@@ -15,6 +17,14 @@ export class AdminHomeComponent implements OnInit {
   public debugCount: number;
   public yesterDay: number;
   public logs: Log[];
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public barChartLabels: Label[] = ['Today','Yesterday'];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartPlugins = [];
 
   constructor(private logService: LogService) {
     this.getInfoCount();
